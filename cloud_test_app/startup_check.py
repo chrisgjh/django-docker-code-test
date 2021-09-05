@@ -62,6 +62,12 @@ def get_migration_data():
         # If the migration is a needed migration, add it to: needed_migrations
         # If the migration is from the locking app, also add it to:
         #   locking_migrations
+        needed_migrations = set()
+        locking_migrations = set()
+        num_needed_migrations = 0
+
+        for i in range(num_migrations):
+            if migrations[i] 
 
         return {
             "migrations": migrations,
