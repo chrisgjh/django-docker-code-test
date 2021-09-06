@@ -9,3 +9,9 @@ def index(request):
         "num_answers": num_answers,
     }
     return render(request, "questionnaire/index.html", context)
+
+def questionnaire(request):
+    return render(request, "questionnaire/questionnaire.html")
+
+def results(request):
+    return render(request, "questionnaire/results.html")

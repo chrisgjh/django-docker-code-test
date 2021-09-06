@@ -67,7 +67,11 @@ def get_migration_data():
         num_needed_migrations = 0
 
         for i in range(num_migrations):
-            if migrations[i] 
+            needed_migrations.add(migrations[i])
+            if migrations[i].find("locking"):
+                locking_migrations.add(migrations[i])
+        
+        num_needed_migrations = len(needed_migrations)
 
         return {
             "migrations": migrations,
