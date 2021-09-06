@@ -5,15 +5,18 @@
 
   <div class="index-main">
     <h1 class="index-heading">Simple Questionnaire</h1>
-    <p>
-      My favourite month.
-    </p>
-    <!--Dropdown box for month-->>
-    <p>
-      My favourite day of the week.
-    </p>
-    <!--Dropdown box for day-->>
-    <!--Submit button-->>
+    <form action="" method="POST">
+      <p>
+        My favourite month.
+      </p>
+      {{ form.month }}
+      <p>
+        My favourite day of the week.
+      </p>
+      <!--Dropdown box for day-->
+      <input type="submit" value="Submit" class="btn btn-primary">
+    </form>
+    
   </div>
 </div>
 {% endblock %}
