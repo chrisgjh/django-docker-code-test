@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .forms import MonthForm, DayOfWeekForm
 
 def index(request):
     # TODO: make this a real number:
@@ -11,7 +12,19 @@ def index(request):
 
 
 def questionnaire(request):
-    return render(request, "questionnaire/questionnaire.html")
+    monform = MonthForm(request.POST or None)
+    if monform.is_valid():
+        monform.save()
+    
+    dayform = DayOfWeekForm(request.POST or None)
+    if dayform.is_valid():
+        dayform.save()
+    
+    context = {
+        "monform": monform,
+        "dayform": dayform,
+    }
+    return render(request, "questionnaire/questionnaire.html", context)
 
 def results(request):
     return render(request, "questionnaire/results.html")
