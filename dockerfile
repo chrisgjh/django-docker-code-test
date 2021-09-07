@@ -19,6 +19,7 @@ RUN pip install --no-cache-dir --upgrade pip && \
 
 EXPOSE 8000
 WORKDIR /opt
+RUN chmod +x /opt/entrypoint.sh
 
 # TODO: set entrypoint and command (see entrypoint.sh)
 ENTRYPOINT [ "/opt/entrypoint.sh" ]
