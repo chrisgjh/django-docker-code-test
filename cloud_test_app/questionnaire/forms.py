@@ -1,5 +1,6 @@
 from django import forms
-from .models import FavMonth, FavDayOfWeek
+from .models import FavMonth
+from .models import FavDayOfWeek
 
 class MonthForm(forms.ModelForm):
     class Meta:

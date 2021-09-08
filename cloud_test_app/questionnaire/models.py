@@ -17,7 +17,7 @@ MONTHS = (
 )
 
 class FavMonth(models.Model):
-    month = CharField(max_length=20, default='December', choices=MONTHS, null=False)
+    month = CharField(max_length=20, default='January', choices=MONTHS, null=False)
 
 DAYOFWEEK = (
     ('Monday', 'MONDAY'),
@@ -30,4 +30,4 @@ DAYOFWEEK = (
 )
 
 class FavDayOfWeek(models.Model):
-    dayofweek = CharField(max_length=20, default='Friday', choices=DAYOFWEEK, null=False)
+    dayofweek = CharField(max_length=20, default='Monday', choices=DAYOFWEEK, null=False)

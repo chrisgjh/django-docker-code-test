@@ -15,10 +15,12 @@ def questionnaire(request):
     monform = MonthForm(request.POST or None)
     if monform.is_valid():
         monform.save()
+        monform = MonthForm()
     
     dayform = DayOfWeekForm(request.POST or None)
     if dayform.is_valid():
         dayform.save()
+        dayform = DayOfWeekForm()
     
     context = {
         "monform": monform,
