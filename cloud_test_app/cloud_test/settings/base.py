@@ -12,7 +12,10 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 # Application definition
 
 INSTALLED_APPS = [
-    
+    'questionnaire',
+
+    'bootstrap4',
+    'locking',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -21,11 +24,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sitemaps',
-
-    'questionnaire',
-
-    'bootstrap4',
-    'locking',
 ]
 
 MIDDLEWARE = [

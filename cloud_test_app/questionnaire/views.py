@@ -1,9 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .forms import MonthForm, DayOfWeekForm
+from .models import FavMonth
 
 def index(request):
     # TODO: make this a real number:
-    num_answers = 0
+    num_answers = FavMonth.objects.count()
     context = {
         "title": "Basic Questions!",
         "num_answers": num_answers,
@@ -12,15 +13,15 @@ def index(request):
 
 
 def questionnaire(request):
+    print(request.POST)
     monform = MonthForm(request.POST or None)
-    if monform.is_valid():
-        monform.save()
-        monform = MonthForm()
-    
     dayform = DayOfWeekForm(request.POST or None)
-    if dayform.is_valid():
+    if monform.is_valid() and dayform.is_valid():
+        monform.save()
         dayform.save()
+        monform = MonthForm()
         dayform = DayOfWeekForm()
+        return redirect('../')
     
     context = {
         "monform": monform,

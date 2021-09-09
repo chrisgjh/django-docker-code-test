@@ -10,22 +10,14 @@
       <p>
         My favourite month.
       </p>
-      <select name="favmonth" id="month">
-        {% for month in monform.month %}
-          <option value="{{ month }}"></option>
-        {% endfor %}
-      </select>
+      {{ monform.month }}
       <br><br>
       <p>
         My favourite day of the week.
       </p>
-      <select name="favday" id="day">
-        {% for day in dayform.dayofweek %}
-          <option value="{{ day }}"></option>
-        {% endfor %}
-      </select>
+      {{ dayform.dayofweek }}
       <br><br>
-      <a href="/"><input type="submit" value="Submit" class="btn btn-primary"></a>
+      <input type="submit" value="Submit" class="btn btn-primary">
     </form>
   </div>
 </div>
