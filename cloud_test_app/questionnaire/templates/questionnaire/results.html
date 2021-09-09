@@ -18,11 +18,23 @@
 
     <h2 class="index-heading">Results</h2>
     <h3 class="index-heading">Months</h3>
-    <!--some data manipulations-->
+    <ul>
+      {% for mon, mon_count, mon_per in mon_info %}
+        <li>{{ mon }}: {{ mon_count }} ({{ mon_per }}%)</li>
+      {% endfor %}
+    </ul>
     <h3 class="index-heading">Days</h3>
-    <!--some data manipulations-->
+    <ul>
+      {% for day, day_count, day_per in day_info %}
+        <li>{{ day }}: {{ day_count }} ({{ day_per }}%)</li>
+      {% endfor %}
+    </ul>
     <h3 class="index-heading">Fav day related to month</h3>
-    <!--some data manipulations-->
+    <ul>
+      {% for rmon, rday in results %}
+        <li>{{rmon}}: {{rday}}</li>
+      {% endfor %}
+    </ul>
   </div>
 </div>
 {% endblock %}
