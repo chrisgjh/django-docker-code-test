@@ -66,10 +66,13 @@ def get_migration_data():
         locking_migrations = set()
         num_needed_migrations = 0
 
-        for i in range(num_migrations):
-            needed_migrations.add(migrations[i])
-            if migrations[i].find("locking"):
-                locking_migrations.add(migrations[i])
+        for migr in migrations:
+            if migr.startswith('[]'):
+                needed_migrations.add(migr)
+            elif "locking" in migr:
+                locking_migrations.add(migr)
+            if migr.startswith('[X]'):
+                continue
         
         num_needed_migrations = len(needed_migrations)
 
