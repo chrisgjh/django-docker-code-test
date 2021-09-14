@@ -23,3 +23,4 @@ RUN chmod +x /opt/entrypoint.sh
 
 # TODO: set entrypoint and command (see entrypoint.sh)
 ENTRYPOINT [ "/opt/entrypoint.sh" ]
+CMD [ "--start-service" ]
