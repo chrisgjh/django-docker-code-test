@@ -1,13 +1,7 @@
 from django import forms
-from .models import FavMonth
-from .models import FavDayOfWeek
+from .models import FavDate
 
-class MonthForm(forms.ModelForm):
+class DateForm(forms.ModelForm):
     class Meta:
-        model = FavMonth
-        fields = ['month']
-
-class DayOfWeekForm(forms.ModelForm):
-    class Meta:
-        model = FavDayOfWeek
-        fields = ['dayofweek']
+        model = FavDate
+        fields = ['month', 'dayofweek']

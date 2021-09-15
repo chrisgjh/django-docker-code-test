@@ -1,7 +1,5 @@
 from django.contrib import admin
 
-from .models import FavMonth
-from .models import FavDayOfWeek
+from .models import FavDate
 
-admin.site.register(FavMonth)
-admin.site.register(FavDayOfWeek)
+admin.site.register(FavDate)

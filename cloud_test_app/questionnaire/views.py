@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect
-from .forms import MonthForm, DayOfWeekForm
-from .models import FavMonth, FavDayOfWeek
+from .forms import DateForm
+from .models import FavDate
 
 def index(request):
     # TODO: make this a real number:
-    num_answers = FavMonth.objects.count()
+    num_answers = FavDate.objects.count()
     context = {
         "title": "Basic Questions!",
         "num_answers": num_answers,
@@ -13,48 +13,46 @@ def index(request):
 
 
 def questionnaire(request):
-    monform = MonthForm(request.POST or None)
-    dayform = DayOfWeekForm(request.POST or None)
-    if monform.is_valid() and dayform.is_valid():
-        monform.save()
-        dayform.save()
-        monform = MonthForm()
-        dayform = DayOfWeekForm()
+    dateform = DateForm(request.POST or None)
+    if dateform.is_valid():
+        dateform.save()
+        dateform = DateForm()
         return redirect('../')
     
     context = {
-        "monform": monform,
-        "dayform": dayform,
+        "dateform": dateform,
     }
     return render(request, "questionnaire/questionnaire.html", context)
 
 def results(request):
-    favmon = FavMonth.objects.all()
-    favday = FavDayOfWeek.objects.all()
+    favdate = FavDate.objects.all()
+    # for obj in favdate:
+    #     print(obj.month)
+    #     print(obj.dayofweek)
 
     #--------------------------- Month Section --------------------------
-    unique_mon = dict()
-    for mon in favmon:
-        if mon.month in unique_mon:
-            unique_mon[mon.month] += 1
-        elif mon.month not in unique_mon:
-            unique_mon[mon.month] = 1
+    unique_date = dict()
+    for date in favdate:
+        if date.month in unique_date:
+            unique_date[date.month] += 1
+        elif date.month not in unique_date:
+            unique_date[date.month] = 1
 
-    sum_mon = sum(unique_mon.values())
+    sum_mon = sum(unique_date.values())
 
     percentage_mon = list()
-    for i in unique_mon.values():
+    for i in unique_date.values():
         percentage_mon.append("{:.1f}".format(i/sum_mon*100))
     
     counter_mon = 0
     mon_info = list()
-    for i,j in unique_mon.items():
+    for i,j in unique_date.items():
         mon_info.append((i, j, percentage_mon[counter_mon]))
         counter_mon += 1
 
     #--------------------------- Day Section ----------------------------
     unique_day = dict()
-    for day in favday:
+    for day in favdate:
         if day.dayofweek in unique_day:
             unique_day[day.dayofweek] += 1
         elif day.dayofweek not in unique_day:
@@ -74,12 +72,12 @@ def results(request):
     
     #-------------------- Fav Day to Month Section ------------------------
     day_to_mon = dict()
-    for z in unique_mon.keys():
+    for z in unique_date.keys():
         day_to_mon[z] = dict()
     
-    for m in range(len(favmon)):
-        mon_key = favmon[m].month
-        day_key = favday[m].dayofweek
+    for m in favdate:
+        mon_key = m.month
+        day_key = m.dayofweek
         if day_key in day_to_mon[mon_key].keys():
             day_to_mon[mon_key][day_key] += 1
         elif day_key not in day_to_mon[mon_key].keys():
@@ -91,8 +89,6 @@ def results(request):
         results.append([n, max(day_dict, key=day_dict.get)])
 
     context = {
-        "favmon": favmon,
-        "favday": favday,
         "mon_info": mon_info,
         "day_info": day_info,
         "results": results,

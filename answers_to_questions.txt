@@ -1,12 +1,9 @@
 1. Explain how the config for this app works, and why when using docker compose might this be a good way to configure rather than a config file
 
-    The Dockerfile is for configuring the container and setting up the container environment.
-
-    All the web app config reside in the setting folder. The settings specified the applications
-    and middlewares needed for the web service. They also include the environment variables
-    for running the web services.
-
-    Docker compose make configuration easier and faster when we work with multiple containers.
+    The application can be configured by environment variables, and because docker-compose
+    lets you set those, you can configure the whole app through the docker compose file and
+    not need any secondary config file. This makes your docker compose file the single 
+    definition for your whole application.
 
 
 
